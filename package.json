@@ -1,0 +1,51 @@
+{
+  "name": "check-status",
+  "version": "0.5.0",
+  "private": false,
+  "description": "Action to support workflows using the gitgitgadget tooling",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build src/miscRequest.ts -t -d -o dist",
+    "compile": "tsc",
+    "format": "prettier --write '**/*.ts'",
+    "format-check": "prettier --check **/*.ts",
+    "lint": "eslint src/**/*.ts",
+    "test:upr": "cmd /c test\\check-status.cmd update-open-prs",
+    "test:ucm": "cmd /c test\\check-status.cmd update-commit-mappings",
+    "test:hop": "cmd /c test\\check-status.cmd handle-open-prs",
+    "test:hnm": "cmd /c test\\check-status.cmd handle-new-mails",
+    "build:readme": "docker run -it --rm --name readme-gen -v %cd%:/usr/src/app -w /usr/src/app -e npm_package_version=%npm_package_version% node:18 npx --yes --trace-warnings github-action-readme-generator@1.0.12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gitgitgadget/check-status.git"
+  },
+  "keywords": [
+    "slash",
+    "command",
+    "dispatch"
+  ],
+  "author": "Chris. Webster",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gitgitgadget/check-status/issues"
+  },
+  "homepage": "https://github.com/gitgitgadget/check-status#readme",
+  "dependencies": {
+    "@actions/core": "^1.9.1",
+    "@actions/github": "^5.1.0",
+    "find-git-exec": "^0.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.45",
+    "@typescript-eslint/parser": "^5.38.1",
+    "@vercel/ncc": "^0.34.0",
+    "eslint": "^8.24.0",
+    "eslint-plugin-anti-trojan-source": "^1.1.0",
+    "eslint-plugin-github": "^4.3.7",
+    "gitgitgadget": "github:gitgitgadget/gitgitgadget",
+    "js-yaml": "^4.1.0",
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.4"
+  }
+}
